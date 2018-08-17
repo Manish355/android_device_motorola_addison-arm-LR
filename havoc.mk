@@ -15,6 +15,7 @@
 # limitations under the License.
 
 $(call inherit-product, device/motorola/addison/full_addison.mk)
+$(call inherit-product, vendor/havoc/config/common_full_phone.mk)
 
 # Boot animation
 TARGET_SCREEN_WIDTH := 1080
@@ -22,7 +23,7 @@ TARGET_SCREEN_HEIGHT := 1920
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := addison
-PRODUCT_NAME := lineage_addison
+PRODUCT_NAME := havoc_addison
 PRODUCT_BRAND := motorola
 PRODUCT_MANUFACTURER := motorola
 
@@ -32,4 +33,4 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="addison-user 8.0.0 OPN27.76-12-22 24 release-keys" \
     PRODUCT_NAME="Moto Z Play"
 
-BUILD_FINGERPRINT=motorola/addison/addison:8.0.0/OPN27.76-12-22/24:user/release-keys
+BUILD_FINGERPRINT := motorola/addison/addison:8.0.0/OPN27.76-12-22/24:user/release-keys

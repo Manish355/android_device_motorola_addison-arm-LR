@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Copyright (C) 2016 The CyanogenMod Project
 # Copyright (C) 2017 The LineageOS Project
@@ -14,35 +13,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
-set -e
+$(call inherit-product, device/motorola/addison/full_addison.mk)
+$(call inherit-product, vendor/liquid/config/common_full_phone.mk)
 
-DEVICE=addison
-VENDOR=motorola
+# Boot animation
+TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 1920
 
-INITIAL_COPYRIGHT_YEAR=2016
+## Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := addison
+PRODUCT_NAME := liquid_addison
+PRODUCT_BRAND := motorola
+PRODUCT_MANUFACTURER := motorola
+PRODUCT_MODEL := XT1635-02
 
-# Load extract_utils and do some sanity checks
-MY_DIR="${BASH_SOURCE%/*}"
-if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRIVATE_BUILD_DESC="addison-user 8.0.0 OPN27.76-12-22 24 release-keys" \
+    PRODUCT_NAME="Moto Z Play"
 
-LINEAGE_ROOT="$MY_DIR"/../../..
-
-HELPER="$LINEAGE_ROOT"/vendor/liquid/build/tools/extract_utils.sh
-if [ ! -f "$HELPER" ]; then
-    echo "Unable to find helper script at $HELPER"
-    exit 1
-fi
-. "$HELPER"
-
-# Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT"
-
-# Copyright headers and guards
-write_headers
-
-write_makefiles "$MY_DIR"/proprietary-files.txt true
-
-# Finish
-write_footers
+BUILD_FINGERPRINT := motorola/addison/addison:8.0.0/OPN27.76-12-22/24:user/release-keys
